@@ -1,0 +1,54 @@
+﻿--- STEP 1: VERIFY INGESTION ---
+Pages loaded: 641
+Total extracted characters: 853413
+Sample text (first 500 chars): 
+2026-02-24 07:51:25,554 - src.retrieval - INFO - Loading Chroma vector store...
+D:\Devops chatbot\devops-rag-assistant\src\retrieval.py:22: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.
+  vectorstore = Chroma(
+Total chunks in vectorstore: 1193
+
+--- STEP 2: VERIFY METADATA CONSISTENCY ---
+Sample doc_titles in DB: {'The DevOps Handbook How to Create World-Class Agility, Reliability, and Security in Technology Organizations by Gene Kim, Jez Humble, Patrick Debois, John Willis.pdf'}
+Sample doc_ids (hashes) in DB: {'2af2fce3e5fd10018d373b6e0e3c334f'}
+Active docs from UI (filenames): ['deployments K8s doc.pdf', 'kubernates command-lines docs.pdf', 'The DevOps Handbook How to Create World-Class Agility, Reliability, and Security in Technology Organizations by Gene Kim, Jez Humble, Patrick Debois, John Willis.pdf']
+
+--- STEP 3: VERIFY FILTERING ---
+
+Top 5 WITHOUT filter (query='DevOps'):
+  Title: The DevOps Handbook How to Create World-Class Agility, Reliability, and Security in Technology Organizations by Gene Kim, Jez Humble, Patrick Debois, John Willis.pdf | Score: 0.4302 | Content: Imagine	a	World	Where	Dev	and
+Ops	Become	DevOps
+  Title: The DevOps Handbook How to Create World-Class Agility, Reliability, and Security in Technology Organizations by Gene Kim, Jez Humble, Patrick Debois, John Willis.pdf | Score: 0.4552 | Content: Conclusion	to	the	DevOps	Handbook
+We	have	come	to	the	end	of	a	detailed	exploration	of	both	the	principles	and
+technical
+  Title: The DevOps Handbook How to Create World-Class Agility, Reliability, and Security in Technology Organizations by Gene Kim, Jez Humble, Patrick Debois, John Willis.pdf | Score: 0.5103 | Content: human	beings.	By	solving	these	problems,	DevOps	astonishingly	enables	us	to
+simultaneously	improve	organizational	perfor
+  Title: The DevOps Handbook How to Create World-Class Agility, Reliability, and Security in Technology Organizations by Gene Kim, Jez Humble, Patrick Debois, John Willis.pdf | Score: 0.5352 | Content: As	Glenn	OÆDonnell	from	Forrester	Research	quipped	in	his	2014	DevOps
+Enterprise	Summit	presentation,	ôFor	all	technolog
+  Title: The DevOps Handbook How to Create World-Class Agility, Reliability, and Security in Technology Organizations by Gene Kim, Jez Humble, Patrick Debois, John Willis.pdf | Score: 0.5365 | Content: event	was	over,	this	thing	we	call	DevOps	was	clearly	in	my	blood.
+Clearly,	the	co-authors	of	this	book	all	came	to	a	si
+
+Top 5 WITH $in filter on doc_title (all active docs):
+  Title: The DevOps Handbook How to Create World-Class Agility, Reliability, and Security in Technology Organizations by Gene Kim, Jez Humble, Patrick Debois, John Willis.pdf | Score: 0.4302 | Content: Imagine	a	World	Where	Dev	and
+Ops	Become	DevOps
+  Title: The DevOps Handbook How to Create World-Class Agility, Reliability, and Security in Technology Organizations by Gene Kim, Jez Humble, Patrick Debois, John Willis.pdf | Score: 0.4552 | Content: Conclusion	to	the	DevOps	Handbook
+We	have	come	to	the	end	of	a	detailed	exploration	of	both	the	principles	and
+technical
+  Title: The DevOps Handbook How to Create World-Class Agility, Reliability, and Security in Technology Organizations by Gene Kim, Jez Humble, Patrick Debois, John Willis.pdf | Score: 0.5103 | Content: human	beings.	By	solving	these	problems,	DevOps	astonishingly	enables	us	to
+simultaneously	improve	organizational	perfor
+  Title: The DevOps Handbook How to Create World-Class Agility, Reliability, and Security in Technology Organizations by Gene Kim, Jez Humble, Patrick Debois, John Willis.pdf | Score: 0.5352 | Content: As	Glenn	OÆDonnell	from	Forrester	Research	quipped	in	his	2014	DevOps
+Enterprise	Summit	presentation,	ôFor	all	technolog
+  Title: The DevOps Handbook How to Create World-Class Agility, Reliability, and Security in Technology Organizations by Gene Kim, Jez Humble, Patrick Debois, John Willis.pdf | Score: 0.5365 | Content: event	was	over,	this	thing	we	call	DevOps	was	clearly	in	my	blood.
+Clearly,	the	co-authors	of	this	book	all	came	to	a	si
+
+--- STEP 4: VERIFY THRESHOLD ---
+  Query: 'What is CI/CD?' -> Scores: ['1.0940', '1.2752', '1.2806']
+  Query: 'Docker integration' -> Scores: ['0.9556', '0.9766', '0.9782']
+  Query: 'Kubernetes' -> Scores: ['1.2682', '1.2866', '1.2879']
+  Query: 'Git ops' -> Scores: ['0.9933', '1.0093', '1.0553']
+  Query: 'AWS pipeline' -> Scores: ['0.9531', '1.0824', '1.0940']
+
+--- STEP 5: VERIFY EMBEDDING CONSISTENCY ---
+Ingestion model: all-MiniLM-L6-v2
+Retrieval model: all-MiniLM-L6-v2 (same function)
+
+--- DONE ---
